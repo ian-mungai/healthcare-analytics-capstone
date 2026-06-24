@@ -58,16 +58,25 @@ The project utilizes public datasets from the Centers for Medicare & Medicaid Se
 │   └── prepare_timely_effective_care.py
 ├── sql/
 │   ├── raw/
+│   │   ├── hai_raw.sql
+│   │   ├── hcahps_raw.sql
+│   │   ├── hospital_general_raw.sql
+│   │   ├── psi90_raw.sql
+│   │   └── timely_effective_care_raw.sql
 │   ├── curated/
+│   │   ├── hai_curated.sql
+│   │   ├── hospital_characteristics_curated.sql
+│   │   ├── patient_experience_curated.sql
+│   │   ├── patient_safety_curated.sql
+│   │   └── timely_effective_care_curated.sql
 │   └── regression_dataset.sql
 ├── config/
-│   └── airflow.cfg
 ├── plugins/
-── docker-compose.yaml
-├── linear_regression.ipynb
+├── docker-compose.yaml
+├── d610_capstone.ipynb
 ├── .env.example
 ├── .gitignore
-└── README.md├
+└── README.md
 ```
 
 ## Account-Specific Configuration
