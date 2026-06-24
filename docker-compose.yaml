@@ -80,7 +80,7 @@ x-airflow-common:
   volumes:
     - ${AIRFLOW_PROJ_DIR:-.}/dags:/opt/airflow/dags
     - ${AIRFLOW_PROJ_DIR:-.}/glue_jobs:/opt/airflow/glue_jobs
-    - ${AIRFLOW_PROJ_DIR:-.}/d610_capstone.ipynb:/opt/airflow/d610_capstone.ipynb
+    - ${AIRFLOW_PROJ_DIR:-.}/linear_regression.ipynb:/opt/airflow/linear_regression.ipynb
     - ${AIRFLOW_PROJ_DIR:-.}/logs:/opt/airflow/logs
     - ${AIRFLOW_PROJ_DIR:-.}/config:/opt/airflow/config
     - ${AIRFLOW_PROJ_DIR:-.}/plugins:/opt/airflow/plugins
