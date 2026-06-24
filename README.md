@@ -41,26 +41,99 @@ The project utilizes public datasets from the Centers for Medicare & Medicaid Se
 - AWS Glue
 - SQL
 - Docker
+- Jupyter Notebook
 
 ## Repository Structure
 
 ```text
-dags/
-glue_jobs/
-sql/
-config/
-plugins/
-docker/
+.
+├── dags/
+│   └── full_pipeline.py
+├── glue_jobs/
+│   ├── prepare_hai.py
+│   ├── prepare_hospital_characteristics.py
+│   ├── prepare_ml_dataset.py
+│   ├── prepare_patient_experience.py
+│   ├── prepare_patient_safety.py
+│   └── prepare_timely_effective_care.py
+├── sql/
+│   ├── raw/
+│   ├── curated/
+│   └── regression_dataset.sql
+├── config/
+│   └── airflow.cfg
+├── plugins/
+── docker-compose.yaml
+├── linear_regression.ipynb
+├── .env.example
+├── .gitignore
+└── README.md├
 ```
+
+## Account-Specific Configuration
+
+This project requires local configuration for AWS and Airflow. Do not commit personal account identifiers, access keys, bucket names, or local machine paths.
+
+Use placeholders in committed files and configure real values locally.
+
+### Required Local Values
+
+| Value                  | Description                                      | Example Placeholder             |
+| ---------------------- | ------------------------------------------------ | ------------------------------- |
+| AWS region             | AWS region used for S3 and Glue                  | `AWS_REGION=your-aws-region`    |
+| S3 bucket              | Destination bucket for raw and curated data      | `S3_BUCKET=your-s3-bucket-name` |
+| Airflow AWS connection | Airflow connection used by S3 and Glue operators | `aws_credentials`               |
+
+## AWS Setup Requirements
+
+Before running the full pipeline, configure these AWS resources:
+
+1. Create an S3 bucket for the project.
+2. Create or configure AWS Glue jobs matching the job names used in the DAG:
+   - `prepare_hai`
+   - `prepare_hospital_characteristics`
+   - `prepare_patient_experience`
+   - `prepare_patient_safety`
+   - `prepare_timely_effective_care`
+   - `prepare_ml_dataset`
+3. Upload or reference the Glue scripts from the `glue_jobs/` directory.
+4. Ensure the Glue execution role has permissions for:
+   - S3 read/write access
+   - Glue job execution
+   - CloudWatch logging
+5. Configure AWS credentials locally or through an Airflow connection.
+
+## Airflow AWS Connection
+
+The DAG expects an Airflow connection named:
+
+```text
+aws_credentials
+```
+
+Create it in the Airflow UI:
+
+1. Open Airflow at `http://localhost:8080`.
+2. Go to **Admin > Connections**.
+3. Add a new connection.
+4. Use the following values:
+   - Connection Id: `aws_credentials`
+   - Connection Type: `Amazon Web Services`
+   - AWS Access Key ID: your local AWS access key, if not using an IAM role
+   - AWS Secret Access Key: your local AWS secret key, if not using an IAM role
+   - Region Name: your AWS region
+
+Do not commit AWS credentials to the repository.
 
 ## Key Features
 
 - Automated healthcare data ingestion
 - Cloud-based data lake architecture
-- Workflow orchestration with Airflow
+- Workflow orchestration with Apache Airflow
 - ETL processing using AWS Glue
-- Analytical and modeling-ready datasets
-- Containerized development environment
+- CMS healthcare quality dataset integration
+- Analytical and modeling-ready data outputs
+- Containerized local development environment
 
 ## License
 
