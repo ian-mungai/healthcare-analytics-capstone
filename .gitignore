@@ -17,7 +17,7 @@ env/
 airflow.db
 airflow-webserver.pid
 logs/
-airflow/logs/
+*.log
 
 # AWS
 .aws/
@@ -65,3 +65,5 @@ temp/
 
 # Local configuration
 config/local/
+/logs/
+
