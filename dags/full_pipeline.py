@@ -10,8 +10,8 @@ from airflow.providers.amazon.aws.operators.glue import GlueJobOperator
 from airflow.operators.bash import BashOperator
 
 
-s3_bucket = "imungai-capstone"
-aws_region = "us-east-1"
+s3_bucket = "your-s3-bucket-name"
+aws_region = "your-aws-region-name"
 
 datasets = {
     "hai": {
