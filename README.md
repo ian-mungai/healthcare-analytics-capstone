@@ -70,10 +70,10 @@ The project utilizes public datasets from the Centers for Medicare & Medicaid Se
 │   │   ├── patient_safety_curated.sql
 │   │   └── timely_effective_care_curated.sql
 │   └── regression_dataset.sql
-├── config/
+├── config/                 # airflow.cfg is generated here locally; not committed
 ├── plugins/
 ├── docker-compose.yaml
-├── d610_capstone.ipynb
+├── linear_regression.ipynb
 ├── .env.example
 ├── .gitignore
 └── README.md
@@ -84,6 +84,11 @@ The project utilizes public datasets from the Centers for Medicare & Medicaid Se
 This project requires local configuration for AWS and Airflow. Do not commit personal account identifiers, access keys, bucket names, or local machine paths.
 
 Use placeholders in committed files and configure real values locally.
+
+### Local Airflow Files
+
+1. Copy `.env.example` to `.env` and set `AIRFLOW_UID` and `FERNET_KEY` (the file shows how to generate the key).
+2. `config/airflow.cfg` is created by the `airflow-init` service on first start and is ignored by Git. It contains `fernet_key` and `secret_key`, so never commit it.
 
 ### Required Local Values
 
