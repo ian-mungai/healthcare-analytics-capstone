@@ -24,5 +24,5 @@ WITH SERDEPROPERTIES (
   'mapping' = 'TRUE'
 )
 STORED AS INPUTFORMAT 'org.apache.hadoop.mapred.TextInputFormat' OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
-LOCATION 's3://imungai-capstone/raw/timely_effective_care/'
+LOCATION 's3://<S3_BUCKET>/raw/timely_effective_care/'
 TBLPROPERTIES ('classification' = 'json');

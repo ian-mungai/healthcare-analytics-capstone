@@ -46,5 +46,5 @@ WITH SERDEPROPERTIES (
   'mapping' = 'TRUE'
 )
 STORED AS INPUTFORMAT 'org.apache.hadoop.mapred.TextInputFormat' OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
-LOCATION 's3://imungai-capstone/raw/hospital_general/'
+LOCATION 's3://<S3_BUCKET>/raw/hospital_general/'
 TBLPROPERTIES ('classification' = 'json');

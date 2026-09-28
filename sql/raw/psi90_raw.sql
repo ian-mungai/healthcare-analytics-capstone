@@ -21,5 +21,5 @@ WITH SERDEPROPERTIES (
   'mapping' = 'TRUE'
 )
 STORED AS INPUTFORMAT 'org.apache.hadoop.mapred.TextInputFormat' OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
-LOCATION 's3://imungai-capstone/raw/psi90/'
+LOCATION 's3://<S3_BUCKET>/raw/psi90/'
 TBLPROPERTIES ('classification' = 'json');

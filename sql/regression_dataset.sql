@@ -30,8 +30,7 @@ STORED AS INPUTFORMAT
 OUTPUTFORMAT 
   'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
 LOCATION
-  's3://imungai-capstone/analytics/regression_dataset/'
+  's3://<S3_BUCKET>/analytics/regression_dataset/'
 TBLPROPERTIES (
   'CreatedByJob'='prepare_ml_dataset', 
-  'CreatedByJobRun'='jr_db29cf97b984df3ae7099965eb2bdd74b8a7f9b9fa1b5828839edf1fe1f68b1d', 
   'classification'='json')

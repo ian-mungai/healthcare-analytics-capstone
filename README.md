@@ -87,7 +87,7 @@ Use placeholders in committed files and configure real values locally.
 
 ### Local Airflow Files
 
-1. Copy `.env.example` to `.env` and set `AIRFLOW_UID` and `FERNET_KEY` (the file shows how to generate the key).
+1. Copy `.env.example` to `.env` and set `AIRFLOW_UID`, `FERNET_KEY`, `S3_BUCKET` and `AWS_REGION` (the file shows how to generate the key).
 2. `config/airflow.cfg` is created by the `airflow-init` service on first start and is ignored by Git. It contains `fernet_key` and `secret_key`, so never commit it.
 3. Run `git config core.hooksPath .githooks` once per clone. The commit-msg hook requires Conventional Commit subjects and rejects AI attribution lines.
 
@@ -153,3 +153,19 @@ Do not commit AWS credentials to the repository.
 ## License
 
 This project is provided for educational and portfolio purposes.
+
+## Portable Deployment Configuration
+
+The DAG and notebook require non-empty `S3_BUCKET` and `AWS_REGION` environment variables. Docker Compose reads the private `.env` file. For a notebook started outside Compose, supply these two variables to the notebook process; the notebook does not load `.env` automatically. Missing values fail before reading or writing S3. Credentials remain in the existing AWS credential chain or Airflow connection, never in the notebook.
+
+Each of the six Glue jobs requires `--S3_BUCKET`. The DAG passes the same bucket to every job. When starting a Glue job outside Airflow, set that argument explicitly. The established `capstone_db` schema, table names, job names and public CMS dataset identifiers are unchanged.
+
+SQL files contain `<S3_BUCKET>` tokens and must be rendered before execution:
+
+```sh
+python3 scripts/render_sql.py sql/raw/hai_raw.sql > /tmp/hai_raw.sql
+```
+
+Set `S3_BUCKET` in the command environment first. The renderer validates the bucket, writes SQL to stdout and never submits a query. Rendered SQL contains private deployment configuration; keep it local. Historical Glue run identifiers were removed from DDL because they are not reusable table configuration.
+
+The notebook retains historical public CMS outputs, figures and model results; editing configuration does not rerun or revalidate those results. Local logs, compiled caches and Tableau exports are separate review targets and are not cleared for publication by these source changes.

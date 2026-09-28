@@ -14,8 +14,7 @@ STORED AS INPUTFORMAT
 OUTPUTFORMAT 
   'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
 LOCATION
-  's3://imungai-capstone/curated/hospital_characteristics/'
+  's3://<S3_BUCKET>/curated/hospital_characteristics/'
 TBLPROPERTIES (
   'CreatedByJob'='prepare_hospital_characteristics', 
-  'CreatedByJobRun'='jr_01d739ca1ee4efb6e298fa2862d8a1dc5bb84e2405f90f5302c70fdeb4ee1556', 
   'classification'='json')

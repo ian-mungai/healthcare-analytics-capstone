@@ -9,8 +9,7 @@ STORED AS INPUTFORMAT
 OUTPUTFORMAT 
   'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
 LOCATION
-  's3://imungai-capstone/curated/hai/'
+  's3://<S3_BUCKET>/curated/hai/'
 TBLPROPERTIES (
   'CreatedByJob'='prepare_hai_dataset', 
-  'CreatedByJobRun'='jr_617a114fe0b71ae78f3250638be3a6aa0b311b58708e2892f78803364ad480e8', 
   'classification'='json')
