@@ -89,6 +89,7 @@ Use placeholders in committed files and configure real values locally.
 
 1. Copy `.env.example` to `.env` and set `AIRFLOW_UID` and `FERNET_KEY` (the file shows how to generate the key).
 2. `config/airflow.cfg` is created by the `airflow-init` service on first start and is ignored by Git. It contains `fernet_key` and `secret_key`, so never commit it.
+3. Run `git config core.hooksPath .githooks` once per clone. The commit-msg hook requires Conventional Commit subjects and rejects AI attribution lines.
 
 ### Required Local Values
 
